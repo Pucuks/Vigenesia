@@ -1,4 +1,4 @@
-# Vigenesia mobile
+# Vigenesia mobile memakai React Native
 
 Kelompok Mobile Programming
 * Muhammad Aglia Dwitama
