@@ -1,4 +1,4 @@
-![Alt Text](https://media.giphy.com/media/woAUedkxQ2qxUJqoUS/source.gif)
+​                                                      ![Alt Text](https://media.giphy.com/media/woAUedkxQ2qxUJqoUS/source.gif)
 
 ## Vigenesia Mobile Memakai React Native
 
@@ -31,20 +31,31 @@
 
 ## :exclamation: Langkah-Langkah
 
-1. Pertama clone repositories dari Github menuju penyimanan local
+1. Pertama clone repositories dari Github menuju penyimpanan local :
 
 ```
 git clone (url-repo)
 ```
 
-2. Langkah selanjutnya buka teriminal 
+2. Langkah selanjutnya buka teriminal :
 
-   ``` 
-   npm intall -global yarn expo-cli
-
-3. 
-
-cd ke wd vigenesia
-``` bash
-  yarn install
 ```
+npm intall -global yarn expo-cli
+```
+
+3. Selanjutnya membuka teriminal pada file Vigenesia :
+
+```
+yarn install
+```
+
+4. Jika expo ,yarn dan avd sudah ready maka jalankan perintah :
+
+```
+yarn android
+```
+
+Berikut Hasil :
+
+<center><img src="https://i.ibb.co/NTR9gqs/image-removebg-preview-23.png" alt="image-removebg-preview-23" style="zoom:80%;" /><Center>
+
