@@ -13,6 +13,7 @@ lalu jalankan command ini di terminal pastikan udah mempunyai
 * yarn
 * android studio (optional)
 
+cd ke wd vigenesia
 ``` bash
   yarn install
 ```
