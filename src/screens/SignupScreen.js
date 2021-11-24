@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import { TextInput, Button, Headline, Colors } from 'react-native-paper';
 
@@ -8,33 +8,46 @@ import Screen from '../components/Screen';
 import Wrapper from '../components/Wrapper';
 import Spacer from '../components/Spacer';
 import CenterHorizontal from '../components/CenterHorizontal';
+import ErrorText from '../components/ErrorText';
 
 export default function SignupScreen({ navigation }) {
-  const { signup } = useContext(AuthContext);
+  const {
+    state: { errorMessage },
+    signup,
+    clearError,
+  } = useContext(AuthContext);
 
   const [name, setName] = useState('');
   const [profesi, setProfesi] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      clearError();
+    });
+    return unsubscribe;
+  }, [navigation]);
+
   return (
-    <Screen full bottom={16}>
+    <Screen full>
       <ScrollView>
         <Wrapper ph={32}>
           <CenterHorizontal>
             <Image
               resizeMode="contain"
               style={styles.img}
-              source={require('../images/signin.png')}
+              source={require('../images/signup.png')}
             />
           </CenterHorizontal>
 
           <CenterHorizontal>
-            <Headline>Signup Account</Headline>
+            <Headline>Create new account</Headline>
           </CenterHorizontal>
           <Spacer mb={16} />
 
-          <Spacer mb={16 * 2} />
+          {errorMessage ? <ErrorText mb={16} text={errorMessage} /> : null}
+
           <TextInput
             mode="outlined"
             label="Nama"
@@ -45,6 +58,7 @@ export default function SignupScreen({ navigation }) {
             onChangeText={setName}
           />
           <Spacer />
+
           <TextInput
             mode="outlined"
             label="Profesi"
@@ -53,6 +67,7 @@ export default function SignupScreen({ navigation }) {
             onChangeText={setProfesi}
           />
           <Spacer />
+
           <TextInput
             mode="outlined"
             label="Email"
@@ -61,6 +76,7 @@ export default function SignupScreen({ navigation }) {
             onChangeText={setEmail}
           />
           <Spacer />
+
           <TextInput
             secureTextEntry
             mode="outlined"
@@ -70,14 +86,16 @@ export default function SignupScreen({ navigation }) {
             onChangeText={setPassword}
           />
           <Spacer />
+
           <Button
             mode="text"
             uppercase={false}
-            onPress={() => navigation.navigate('Signin')}
+            onPress={() => navigation.push('Signin')}
           >
             Already have account? Sign In
           </Button>
           <Spacer mb={16} />
+
           <Button
             icon="login"
             mode="contained"
@@ -94,7 +112,7 @@ export default function SignupScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   img: {
-    width: 200,
-    height: 200,
+    width: 100,
+    height: 100,
   },
 });

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { View } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Screen({
   children,
@@ -11,12 +11,12 @@ export default function Screen({
   bottom = 16,
 }) {
   return (
-    <SafeAreaProvider
+    <SafeAreaView
       style={[{ flex: full ? 1 : 0, backgroundColor: bgColor }, style]}
     >
       <StatusBar />
       <View style={{ marginBottom: bottom }} />
       {children}
-    </SafeAreaProvider>
+    </SafeAreaView>
   );
 }
