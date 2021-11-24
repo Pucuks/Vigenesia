@@ -1,12 +1,48 @@
-# Vigenesia mobile memakai React Native
+![Alt Text](https://media.giphy.com/media/woAUedkxQ2qxUJqoUS/source.gif)
 
-Kelompok Mobile Programming
+## Vigenesia Mobile Memakai React Native
+
+**KELOMPOK TEKNOLOGI WEB SERVICE :**
+
 * [Muhammad Aglia Dwitama](https://www.instagram.com/agliadwitama/)
 * [Muhammad Daffa Afif](https://www.instagram.com/daffaafi/)
 * [Yehezkiel Marbun Lumbanbatu](https://www.instagram.com/yehezxiel/)
-* Yasha Gozwan Shuhada
+* [Yasha Gozwan Shuhada](https://www.instagram.com/yashagozwan/)
 
-untuk menjalankan projek ini silahkan clone atau download
+### :books:List Mobile
+
+| Requirement | URL                                      |
+| :---------- | ----------- |
+| Node. Js | https://nodejs.org/en/ |
+| Yarn | https://yarnpkg.com/getting-started |
+|Expo Cli   | https://docs.expo.dev/workflow/expo-cli/ |
+| Moment.Js    | https://momentjs.com/ |
+| React-Native-Paper   | https://reactnativepaper.com/ |
+| Axios   | https://axios-http.com/docs/intro |
+
+### :office:Server
+| Requirement | URL                                      |
+| :---------- | ----------- |
+| Express | https://expressjs.com/ |
+| Joi | https://joi.dev/ |
+|Mongoose   | https://mongoosejs.com/ |
+| Json Web Tokens | https://jwt.io/ |
+| Bcrypt.js          | https://www.npmjs.com/package/bcrypt |
+
+## :exclamation: Langkah-Langkah
+
+1. Pertama clone repositories dari Github menuju penyimanan local
+
+```
+git clone (url-repo)
+```
+
+2. Langkah selanjutnya buka teriminal 
+
+   ``` 
+   npm intall -global yarn expo-cli
+
+3. 
 
 cd ke wd vigenesia
 ``` bash
