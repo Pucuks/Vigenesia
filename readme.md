@@ -59,3 +59,6 @@ Berikut Hasil :
 
 <center><img src="https://i.ibb.co/NTR9gqs/image-removebg-preview-23.png" alt="image-removebg-preview-23" style="zoom:80%;" /><Center>
 
+Support By : 
+
+<img src="https://cdn.discordapp.com/attachments/785216786902548521/913131126145560586/512px-Visual_Studio_Code_1.png" alt="img" style="zoom:20%;" />
