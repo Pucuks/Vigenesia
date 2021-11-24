@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ScrollView, StyleSheet, View, TouchableOpacity } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
 
 import {
   Headline,
@@ -8,7 +14,12 @@ import {
   DataTable,
   Text,
   Colors,
+  Card,
+  Paragraph,
+  Title,
+  Caption,
 } from 'react-native-paper';
+import moment from 'moment';
 
 import { Context as AuthContext } from '../contexts/AuthContext';
 import { Context as AccountContext } from '../contexts/AccountContext';
@@ -19,77 +30,104 @@ import Icon from '../components/Icon';
 
 export default function HomeScreen({ navigation }) {
   const { signOut } = useContext(AuthContext);
-  const { state, getAccount, clearAccount } = useContext(AccountContext);
+  const {
+    state: { account, notes },
+    getAccount,
+    clearAccount,
+    createNote,
+    getNotes,
+  } = useContext(AccountContext);
 
   const [page, setPage] = useState(0);
   const [note, setNote] = useState('');
 
   useEffect(() => {
+    getNotes();
     const unsubscribe = navigation.addListener('focus', () => {
       getAccount();
+      getNotes();
     });
 
     return function () {
       unsubscribe;
     };
-  }, [page, navigation]);
+  }, [page, navigation, notes.length]);
 
   return (
     <Screen full>
-      <ScrollView>
-        <Wrapper>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
+      <Wrapper>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Headline>Create motivation now!</Headline>
+          <TouchableOpacity
+            onPress={() => {
+              signOut();
+              clearAccount();
             }}
           >
-            <Headline>Create motivation now!</Headline>
-            <TouchableOpacity
-              onPress={() => {
-                signOut();
-                clearAccount();
-              }}
-            >
-              <View style={styles.iconStyle}>
-                <Icon name="logout" color={Colors.white} />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <Text>Hi, {state.account.name}</Text>
-        </Wrapper>
-        <Spacer mb={4} />
-        <Wrapper>
-          <TextInput
-            label="what are you thinking? write here"
-            style={styles.input}
-            mode="outlined"
-            multiline
-            value={note}
-            onChangeText={setNote}
-            autoCorrect={false}
-            autoCapitalize="none"
-          />
-          <Spacer mb={16} />
-          <Button
-            mode="contained"
-            icon="share"
-            onPress={() => console.log('note shared')}
-          >
-            Share
-          </Button>
-        </Wrapper>
-        <Wrapper>
-          <DataTable>
-            <DataTable.Pagination
-              numberOfPages={5 + 1}
-              page={page}
-              onPageChange={(page) => setPage(page)}
-            />
-          </DataTable>
-        </Wrapper>
-      </ScrollView>
+            <View style={styles.iconStyle}>
+              <Icon name="logout" color={Colors.white} />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <Text>Hi, {account.name ? account.name : null}</Text>
+      </Wrapper>
+      <Spacer mb={4} />
+      <Wrapper>
+        <TextInput
+          label="what are you thinking? write here"
+          style={styles.input}
+          mode="outlined"
+          multiline
+          value={note}
+          onChangeText={setNote}
+          autoCorrect={false}
+          autoCapitalize="none"
+        />
+        <Spacer mb={16} />
+        <Button
+          mode="contained"
+          icon="share"
+          onPress={() => createNote({ note })}
+        >
+          Share
+        </Button>
+      </Wrapper>
+      <Spacer />
+      <FlatList
+        data={notes}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => {
+          return (
+            <Wrapper>
+              <Card>
+                <Card.Content>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Icon name="person" mr={8} size={32} />
+                    <View>
+                      <Text>{item.username}</Text>
+                      <Caption>{moment(item.createdAt).fromNow()}</Caption>
+                    </View>
+                  </View>
+                  <Spacer mb={8} />
+                  <Paragraph>{item.note}</Paragraph>
+                </Card.Content>
+              </Card>
+              <Spacer />
+            </Wrapper>
+          );
+        }}
+      />
     </Screen>
   );
 }

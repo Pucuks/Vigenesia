@@ -64,6 +64,7 @@ export default function SigninScreen({ navigation, route }) {
 
           <TextInput
             mode="outlined"
+            autoCapitalize="none"
             label="Email"
             left={<TextInput.Icon name="email" color={Colors.deepPurple700} />}
             value={email}
@@ -74,6 +75,7 @@ export default function SigninScreen({ navigation, route }) {
           <TextInput
             mode="outlined"
             label="Password"
+            secureTextEntry
             left={<TextInput.Icon name="lock" color={Colors.deepPurple700} />}
             value={password}
             onChangeText={setPassword}
