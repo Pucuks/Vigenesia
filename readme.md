@@ -61,4 +61,4 @@ Berikut Hasil :
 
 Support By : 
 
-<img src="https://cdn.discordapp.com/attachments/785216786902548521/913131126145560586/512px-Visual_Studio_Code_1.png" alt="img" style="zoom:20%;" />
+![img](https://cdn.discordapp.com/attachments/785216786902548521/913147130561060874/unknown.png)
